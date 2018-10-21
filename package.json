@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react-redux": "^6.0.9",
+    "@types/react-router-dom": "^4.3.1",
+    "@types/redux-thunk": "^2.1.0",
+    "@types/reselect": "^2.2.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts-ts": "3.1.0"
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts-ts": "3.1.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
