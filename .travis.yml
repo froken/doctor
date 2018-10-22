@@ -6,6 +6,3 @@ cache:
     - node_modules
 script:
   - yarn test
-branches:
-  only:
-  - master
