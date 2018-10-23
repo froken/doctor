@@ -1,1 +1,2 @@
+[![Build Status](https://allayevtukh.visualstudio.com/Doctor/_apis/build/status/Doctor-ASP.NET-CI)](https://allayevtukh.visualstudio.com/Doctor/_build/latest?definitionId=3)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ebbddc1d15484f6abad27856b05b2139)](https://www.codacy.com/app/a.yevtukh/doctor?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=froken/doctor&amp;utm_campaign=Badge_Grade)
