@@ -59,12 +59,12 @@ namespace Doctor.Api
             {
                 var manager = scope.ServiceProvider.GetRequiredService<OpenIddictApplicationManager<OpenIddictApplication>>();
 
-                if (await manager.FindByClientIdAsync("angular-app", cancellationToken) == null)
+                if (await manager.FindByClientIdAsync("doctor-app", cancellationToken) == null)
                 {
                     var descriptor = new OpenIddictApplicationDescriptor
                     {
-                        ClientId = "angular-app",
-                        DisplayName = "Angular Application",
+                        ClientId = "doctor-app",
+                        DisplayName = "Doctor Application",
                         PostLogoutRedirectUris = { new Uri("https://oidcdebugger.com/debug") },
                         RedirectUris = { new Uri("https://oidcdebugger.com/debug") },
                         Permissions =

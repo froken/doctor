@@ -1,5 +1,6 @@
 ﻿using AspNet.Security.OpenIdConnect.Primitives;
 using AspNet.Security.OpenIdConnect.Server;
+using Doctor.Api.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -23,6 +24,12 @@ namespace Doctor.Api.Controllers
                 OpenIdConnectServerDefaults.AuthenticationScheme);
 
             return SignIn(ticket.Principal, ticket.Properties, ticket.AuthenticationScheme);
+        }
+
+        [HttpPost("~/connect/register")]
+        public IActionResult Register([FromBody]User user)
+        {
+
         }
     }
 }
