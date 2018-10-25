@@ -14,6 +14,18 @@ namespace Doctor.BusinessLogic
             _hashService = hashService;
         }
 
+        public User CreateUser(User user)
+        {
+            var hash = _hashService.CreatePasswordHash(user.Password);
+
+            user.PasswordHash = hash.Password;
+            user.PasswordSalt = hash.Salt;
+
+            user = _userRepository.CreateUser(user);
+
+            return user;
+        }
+
         public User Authenticate(string login, string password)
         {
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(password))
@@ -28,7 +40,7 @@ namespace Doctor.BusinessLogic
                 return null;
             }
 
-            if (!_hashService.VerifyHash(password, user.PasswordHash, user.PasswordSalt))
+            if (!_hashService.VerifyPasswordHash(password, new PasswordHash { Password = user.PasswordHash, Salt = user.PasswordSalt }))
             {
                 return null;
             }

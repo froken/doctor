@@ -1,6 +1,6 @@
 ﻿namespace Doctor.Repository
 {
-    class DatabaseConfiguration : IDatabaseConfiguration
+    public class DatabaseConfiguration : IDatabaseConfiguration
     {
         public string GetConnectionString()
         {

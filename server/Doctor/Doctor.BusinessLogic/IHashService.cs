@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Doctor.Entities;
 
 namespace Doctor.BusinessLogic
 {
     public interface IHashService
     {
-        bool VerifyHash(string value, byte[] hash, byte[] salt);
+        bool VerifyPasswordHash(string value, PasswordHash hash);
+
+        PasswordHash CreatePasswordHash(string password);
     }
 }

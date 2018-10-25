@@ -5,5 +5,7 @@ namespace Doctor.Repository
     public interface IUserRepository
     {
         User GetUser(string login);
+
+        User CreateUser(User user);
     }
 }
