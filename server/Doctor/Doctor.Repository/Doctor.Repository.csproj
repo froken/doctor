@@ -46,9 +46,7 @@
   <ItemGroup>
     <Compile Include="DatabaseConfiguration.cs" />
     <Compile Include="IDatabaseConfiguration.cs" />
-    <Compile Include="IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,5 +1,7 @@
-﻿using Doctor.Api.Authorization;
-using Doctor.Api.Models;
+﻿using AutoMapper;
+using Doctor.Api.Authorization;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +9,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace Doctor.Api
 {
@@ -23,41 +28,52 @@ namespace Doctor.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddOpenIddictWithOptions(Configuration);
-            services.AddDbContext<AuthorizationDbContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("authorization"));
-                options.UseOpenIddict();
+            Mapper.Initialize(cfg => { cfg.AddProfile(new DoctorMapperProfile()); });
 
+            services.AddAutoMapper();
+
+            services.AddMemoryCache();
+
+            services.AddDbContext<AuthorizationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("authorization")), ServiceLifetime.Scoped);
+           
+            services.AddIdentity<ApplicationUser, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 6;
+            })
+            .AddEntityFrameworkStores<AuthorizationDbContext>();
+
+            services.ConfigureApplicationCookie(options => {
+                options.Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToAccessDenied = ReplaceRedirectorWithStatusCode(HttpStatusCode.Forbidden),
+                    OnRedirectToLogin = ReplaceRedirectorWithStatusCode(HttpStatusCode.Unauthorized)
+                };
+
+                options.Cookie.Name = ".doctor";
+                options.Cookie.HttpOnly = true; 
+                options.Cookie.SameSite = SameSiteMode.None;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always; 
+
+                options.SlidingExpiration = true;
             });
 
-           
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<AuthorizationDbContext>()
-                .AddDefaultTokenProviders();
-
-            services.AddOpenIddict()
-                    .AddCore(options =>
-                    {
-                        options.UseEntityFrameworkCore()
-                               .UseDbContext<AuthorizationDbContext>();
-                    })
-                    .AddServer(options =>
-                    {
-                        options.EnableAuthorizationEndpoint("/connect/authorize")
-                               .EnableTokenEndpoint("/connect/token")
-                               .EnableLogoutEndpoint("/connect/logout");
-                        options.AllowPasswordFlow();
-                        options.AcceptAnonymousClients();
-                        options.DisableHttpsRequirement();
-                        options.UseMvc();
-                    });
-            services.AddMvcCore();
+            services.AddMvc();
 
 #if DEBUG
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 #endif
         }
+
+        static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirectorWithStatusCode(HttpStatusCode statusCode) => context =>
+        {
+            context.Response.StatusCode = (int)statusCode;
+            return Task.CompletedTask;
+        };
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -70,8 +86,6 @@ namespace Doctor.Api
             app.UseAuthentication();
 
             app.UseMvcWithDefaultRoute();
-
-            // app.AddDefaultIddictApplicationAsync().GetAwaiter().GetResult();
         }
     }
 }
