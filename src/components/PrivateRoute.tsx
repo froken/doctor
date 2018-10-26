@@ -16,7 +16,7 @@ export class PrivateRoute extends React.Component<IProps, {}> {
             return <Route path={this.props.path} component={this.props.component}/>;
         }
 
-        if (location && location.pathname === '/login') {
+        if (location && (location.pathname === '/login' || location.pathname === '/register')) {
             return null;
         }
 
