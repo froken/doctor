@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from "react-redux";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { RegisterForm } from 'src/components/RegisterForm';
+import { LoginForm } from 'src/components/LoginForm';
 import { register } from "../actions/user-actions";
 import { IRootState } from "../reducers/root";
 import { User } from '../types/user';
@@ -15,7 +15,7 @@ export interface IDispatchProps {
     register: (user: User) => void;
 }
 
-export class RegisterPage extends React.Component<IDispatchProps & IStateProps, {}> {
+export class LoginPage extends React.Component<IDispatchProps & IStateProps, {}> {
 
     public constructor(props: IDispatchProps & IStateProps) {
         super(props);
@@ -41,7 +41,7 @@ export class RegisterPage extends React.Component<IDispatchProps & IStateProps, 
     }
 
     public render() {
-        return <RegisterForm user={this.props.user} onChange={this.handleChange} onSubmit={this.handleSubmit} />
+            return <LoginForm />
     }
 }
 
@@ -55,4 +55,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, Action>): IDispatc
     };
   };
 
-export default connect<any, IDispatchProps, any, any>(mapStateToProps, mapDispatchToProps)(RegisterPage as any);
+export default connect<any, IDispatchProps, any, any>(mapStateToProps, mapDispatchToProps)(LoginPage as any);

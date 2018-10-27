@@ -13,7 +13,7 @@ export interface IStateProps {
 export class HomePage extends React.Component<IStateProps, {}> {
     public render() {
         return (
-            <HelloMessage name={this.props.user.login} />
+            <HelloMessage name={this.props.user.userName} />
         )
     }
 }

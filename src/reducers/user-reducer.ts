@@ -12,8 +12,8 @@ export interface IUserState {
 export const initialUserState: IUserState = {
   user: {
       email: null,
-      login: null,
-      password: null
+      password: null,
+      userName: null
   }
 };
 
@@ -21,7 +21,7 @@ export const initialUserState: IUserState = {
 export let reducer: Reducer<IUserState, UserAction> = 
     (state: IUserState = initialUserState, action: UserAction) => {
         switch (action.type) {
-            case UserActionTypes.REGISTER_USER:
+            case UserActionTypes.REGISTER_USER_SUCCESS:
                 return { ...state, user: action.payload.user };
             default:
                 return state;
