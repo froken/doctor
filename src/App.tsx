@@ -4,7 +4,7 @@ import './App.css';
 import { PrivateRoute } from './components/PrivateRoute';
 import { HomePage } from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
-import { RegisterPage } from './containers/RegisterPage';
+import RegisterForm from './containers/RegisterForm';
 
 class App extends React.Component {
   public render() {
@@ -13,7 +13,7 @@ class App extends React.Component {
         <div>
             <Switch>
               <Route path="/login" component={LoginPage} />
-              <Route path="/register" component={RegisterPage} />
+              <Route path="/register" component={RegisterForm} />
               <PrivateRoute path="/" component={HomePage}/>
             </Switch>
         </div>

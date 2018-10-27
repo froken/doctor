@@ -2,19 +2,42 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../types/user';
 
-export interface IStateProps {
+export interface IState {
     user: User
 }
 
-export interface IProps {
-    onChange: (e: any) => void;
-    onSubmit: (e: any) => void;
+export interface IDispatchProps {
+    register: (user: User) => void;
 }
 
-export class RegisterForm extends React.Component<IStateProps & IProps, {}> {
+export class RegisterForm extends React.Component<IDispatchProps, IState> {
 
-    public constructor(props: IStateProps & IProps) {
+    public constructor(props: IDispatchProps) {
         super(props);
+
+        this.state = {
+            user: {
+                email: null,
+                password: null,
+                userName: null
+            }
+        }
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    public onChange(event: any) {
+        const { name, value } = event.target;
+        const user = { ...this.state.user, [name]: value };
+
+        this.setState((state:IState) => {
+            return {...state, user }
+        });
+    }
+
+    public onSubmit(e: any) {
+        this.props.register(this.state.user);
     }
 
     public render() {
@@ -22,11 +45,16 @@ export class RegisterForm extends React.Component<IStateProps & IProps, {}> {
                 <div className="login-page">
                     <div className="form">
                         <form className="register-form">
-                            <input type="text" placeholder="email address" name="email" value={this.props.user && this.props.user.email != null ? this.props.user.email : ""} onChange={this.props.onChange}/>
-                            <input type="text" placeholder="user name" name="userName" value={this.props.user && this.props.user.userName != null ? this.props.user.userName : ""} onChange={this.props.onChange}/>
-                            <input type="password" placeholder="password" name="password" value={this.props.user && this.props.user.password != null ? this.props.user.password : ""} onChange={this.props.onChange}/>
+                            <input type="text" placeholder="email address" name="email" 
+                                value={this.state.user.email != null ? this.state.user.email : ""} onChange={this.onChange}/>
+
+                            <input type="text" placeholder="user name" name="userName" 
+                                value={this.state.user.userName != null ? this.state.user.userName : ""} onChange={this.onChange}/>
+
+                            <input type="password" placeholder="password" name="password" 
+                                value={this.state.user.password != null ? this.state.user.password : ""} onChange={this.onChange}/>
                             
-                            <button onClick={this.props.onSubmit}>Register</button>
+                            <button onClick={this.onSubmit}>Register</button>
                             <p className="message">Already registered? <Link to="/login">Sign In</Link></p>
                         </form>
                     </div>

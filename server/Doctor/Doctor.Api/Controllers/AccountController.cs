@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Doctor.Api.Authorization;
 using Doctor.Api.Models;
-using Doctor.BusinessLogic;
-using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
 
 namespace Doctor.Api.Controllers

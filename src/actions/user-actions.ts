@@ -49,7 +49,7 @@ export function register(user: User, d: ThunkDispatch<any, any, Action>) {
 
         try {
             const response: Response = await fetch(
-                `${Configuration.ApiUrl}/api/tasks`, 
+                `${Configuration.ApiUrl}/api/account`, 
                 { 
                     body: JSON.stringify(user),
                     headers: {
@@ -71,7 +71,7 @@ export function register(user: User, d: ThunkDispatch<any, any, Action>) {
 
             dispatch(addedTask);
             localStorage.setItem('user', JSON.stringify(user));
-            
+
             const browserHistory = createBrowserHistory();
             browserHistory.push('/');
         }
