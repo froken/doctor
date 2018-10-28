@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
+import { history } from "./actions/history";
 import './App.css';
 import { PrivateRoute } from './components/PrivateRoute';
-import { HomePage } from './containers/HomePage';
+import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import RegisterForm from './containers/RegisterForm';
 
 class App extends React.Component {
   public render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <div>
             <Switch>
               <Route path="/login" component={LoginPage} />
@@ -17,7 +18,7 @@ class App extends React.Component {
               <PrivateRoute path="/" component={HomePage}/>
             </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

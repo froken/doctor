@@ -1,8 +1,8 @@
 
-import { createBrowserHistory } from 'history';
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
 import Configuration from 'src/types/configuration';
+import { history } from "../actions/history";
 import { User } from "../types/user";
 
 // Action Type Enum
@@ -61,19 +61,21 @@ export function register(user: User, d: ThunkDispatch<any, any, Action>) {
                     method: "post",
                 });
 
-            const result: any = await response.json();
-            const addedTask: IRegisterUserSuccess = {
+            if (response.status !== 200) {
+                throw new Error("Couldn't register user. Response " + response.status);
+            }
+
+            const action: IRegisterUserSuccess = {
                 payload: {
-                    user: result
+                    user
                 },
                 type: UserActionTypes.REGISTER_USER_SUCCESS,
             };
 
-            dispatch(addedTask);
+            dispatch(action);
             localStorage.setItem('user', JSON.stringify(user));
 
-            const browserHistory = createBrowserHistory();
-            browserHistory.push('/');
+            history.push('/');
         }
         catch (e) {
             dispatch({ type: UserActionTypes.REGISTER_USER_ERROR, payload: { e } })

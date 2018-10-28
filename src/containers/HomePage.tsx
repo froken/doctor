@@ -1,25 +1,11 @@
-import * as React from 'react';
 import { connect } from 'react-redux';
 import { Action } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import { HelloMessage } from '../components/HelloMessage';
+import { HomePage } from '../components/HomePage';
 import { IRootState } from '../reducers/root';
-import { User } from '../types/user';
 
-export interface IStateProps {
-    user: User
-}
-
-export class HomePage extends React.Component<IStateProps, {}> {
-    public render() {
-        return (
-            <HelloMessage name={this.props.user.userName} />
-        )
-    }
-}
-
-const mapStateToProps = (state: IRootState, props: IStateProps): IStateProps => ({
-    user: state.userState.user,
+const mapStateToProps = (state: IRootState, props: any): any => ({
+    name: state.userState.user.userName,
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, Action>): any => {

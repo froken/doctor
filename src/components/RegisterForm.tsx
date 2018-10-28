@@ -37,6 +37,7 @@ export class RegisterForm extends React.Component<IDispatchProps, IState> {
     }
 
     public onSubmit(e: any) {
+        e.preventDefault();
         this.props.register(this.state.user);
     }
 

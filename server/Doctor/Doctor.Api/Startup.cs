@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +35,15 @@ namespace Doctor.Api
             services.AddAutoMapper();
 
             services.AddMemoryCache();
+
+            services.AddCors(o => o.AddPolicy("ClientOriginPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost", "http://localhost:3000")
+
+                       .AllowAnyMethod()
+                       .AllowCredentials()
+                       .AllowAnyHeader();
+            }));
 
             services.AddDbContext<AuthorizationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("authorization")), ServiceLifetime.Scoped);
@@ -62,6 +73,10 @@ namespace Doctor.Api
                 options.SlidingExpiration = true;
             });
 
+            services.Configure<MvcOptions>(options => {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("ClientOriginPolicy"));
+            });
+
             services.AddMvc();
 
 #if DEBUG
@@ -78,6 +93,8 @@ namespace Doctor.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors("ClientOriginPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
