@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from "react-redux";
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { LoginForm } from 'src/components/LoginForm';
 import { register } from "../actions/user-actions";
+import { LoginForm } from '../components/LoginForm';
 import { IRootState } from "../reducers/root";
 import { User } from '../types/user';
 

@@ -1,8 +1,8 @@
 
 import { Action } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import Configuration from 'src/types/configuration';
 import { history } from "../actions/history";
+import Configuration from '../types/configuration';
 import { User } from "../types/user";
 
 // Action Type Enum
