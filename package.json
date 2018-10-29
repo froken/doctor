@@ -7,6 +7,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/redux-thunk": "^2.1.0",
     "@types/reselect": "^2.2.0",
+    "jasmine-reporters": "^2.3.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
@@ -18,7 +19,8 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test a --env=jsdom --json --outputFile=testresults.json --reporters=\"default\" --reporters=\"jest-junit\" --coverage",
+    "test": "react-scripts-ts test a --env=jsdom --outputFile=testresults.xml --reporters=\"jest-junit\" --coverage",
+    "test-watch": "react-scripts-ts test a --env=jsdom --watchAll",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
