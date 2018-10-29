@@ -18,7 +18,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test a --env=jsdom --testResultsProcessor=jest-junit",
+    "test": "react-scripts-ts test a --env=jsdom --json --outputFile=testresults.json --reporters=\"default\" --reporters=\"jest-junit\" --coverage",
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
@@ -26,14 +26,8 @@
     "@types/node": "^10.12.0",
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
+    "jest-junit": "^5.2.0",
+    "jest-localstorage-mock": "^2.3.0",
     "typescript": "^3.1.3"
-  },
-  "jest-junit": {
-    "suiteName": "unit tests",
-    "output": "./.test_output/testresults.xml",
-    "classNameTemplate": "{classname}-{title}",
-    "titleTemplate": "{classname}-{title}",
-    "ancestorSeparator": " › ",
-    "usePathForSuiteName": "true"
   }
 }
