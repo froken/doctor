@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test a --env=jsdom --ci --reporters=\"jest-junit\" --coverage",
+    "test": "react-scripts-ts test a --env=jsdom --ci --reporters=\"default\" --reporters=\"jest-junit\" --coverage",
     "test-watch": "react-scripts-ts test a --env=jsdom --watchAll",
     "eject": "react-scripts-ts eject"
   },
@@ -34,6 +34,7 @@
   },
   "jest": {
     "coverageReporters": [
+      "lcov",
       "cobertura"
     ]
   }
