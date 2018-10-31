@@ -1,4 +1,4 @@
-﻿using Doctor.Api.Authorization;
+﻿using Doctor.Database;
 using Doctor.Api.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;

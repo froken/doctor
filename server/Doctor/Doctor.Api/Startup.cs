@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Doctor.Api.Authorization;
+using Doctor.Database;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -46,7 +46,7 @@ namespace Doctor.Api
             }));
 
             services.AddDbContext<AuthorizationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("authorization")), ServiceLifetime.Scoped);
+                options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
            
             services.AddIdentity<ApplicationUser, IdentityRole>(o =>
             {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace Doctor.Api.Authorization
+namespace Doctor.Database
 {
     public class ApplicationUser : IdentityUser
     {

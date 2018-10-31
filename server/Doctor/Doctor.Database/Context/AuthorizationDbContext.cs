@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Doctor.Api.Authorization
+namespace Doctor.Database
 {
     public class AuthorizationDbContext : IdentityDbContext<ApplicationUser>
     {

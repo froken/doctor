@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Doctor.Api.Migrations
+namespace Doctor.Database.Migrations
 {
     public partial class CreateInitialTables : Migration
     {

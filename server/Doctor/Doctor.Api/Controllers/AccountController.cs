@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Doctor.Api.Authorization;
 using Doctor.Api.Models;
+using Doctor.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

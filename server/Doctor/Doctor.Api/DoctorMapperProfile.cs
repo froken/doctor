@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Doctor.Api.Authorization;
+using Doctor.Database;
 using Doctor.Api.Models;
 
 namespace Doctor.Api
