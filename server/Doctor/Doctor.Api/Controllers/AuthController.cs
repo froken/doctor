@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Doctor.Api.Controllers
 {
-    [Route("api/auth")]
+    [Route( "api/auth")]
     public class AuthController : Controller
     {
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SignInManager<ApplicationUser> _signInManager; 
 
         public AuthController(SignInManager<ApplicationUser> signInManager)
         {
@@ -30,8 +30,8 @@ namespace Doctor.Api.Controllers
             var result = await _signInManager.PasswordSignInAsync(
                 userName: login.UserName,
                 password: login.Password,
-                isPersistent: true, 
-                lockoutOnFailure: true
+                isPersistent: false, 
+                lockoutOnFailure: false
             );
 
             if (result.RequiresTwoFactor)

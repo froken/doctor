@@ -97,7 +97,7 @@ export function register(user: User, d: ThunkDispatch<any, any, Action>) {
             };
 
             dispatch(action);
-            localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('userName', user.userName as string);
 
             history.push('/');
         }

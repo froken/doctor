@@ -5,7 +5,7 @@ import { HomePage } from '../components/HomePage';
 import { IRootState } from '../reducers/root';
 
 const mapStateToProps = (state: IRootState, props: any): any => ({
-    name: state.userState.user.userName,
+    name: state.userState.userName,
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, Action>): any => {

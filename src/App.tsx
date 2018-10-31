@@ -4,7 +4,7 @@ import { history } from "./actions/history";
 import './App.css';
 import { PrivateRoute } from './components/PrivateRoute';
 import HomePage from './containers/HomePage';
-import LoginPage from './containers/LoginPage';
+import LoginForm from './containers/LoginForm';
 import RegisterForm from './containers/RegisterForm';
 
 class App extends React.Component {
@@ -13,7 +13,7 @@ class App extends React.Component {
       <Router history={history}>
         <div>
             <Switch>
-              <Route path="/login" component={LoginPage} />
+              <Route path="/login" component={LoginForm} />
               <Route path="/register" component={RegisterForm} />
               <PrivateRoute path="/" component={HomePage}/>
             </Switch>

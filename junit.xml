@@ -1,6 +1,34 @@
-<testsuites name="jest tests" tests="1" failures="0" time="13.725">
-  <testsuite name="App component tests" errors="0" failures="0" skipped="0" timestamp="2018-10-30T07:14:28" time="10.384" tests="1">
-    <testcase classname="App component tests renders without crashing" name="App component tests renders without crashing" time="0.223">
+<testsuites name="jest tests" tests="1" failures="1" time="13.45">
+  <testsuite name="App component tests" errors="0" failures="1" skipped="0" timestamp="2018-10-30T11:19:33" time="10.961" tests="1">
+    <testcase classname="App component tests renders without crashing" name="App component tests renders without crashing" time="0.17">
+      <failure>TypeError: Cannot read property &apos;userName&apos; of null
+    at LoginForm.render (D:\Alla\github\doctor\src\components\LoginForm.tsx:35:76)
+    at finishClassComponent (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:13727:31)
+    at updateClassComponent (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:13690:10)
+    at beginWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:14489:16)
+    at performUnitOfWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17014:12)
+    at workLoop (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17054:24)
+    at renderRoot (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17133:7)
+    at performWorkOnRoot (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17993:7)
+    at performWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17901:7)
+    at performSyncWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17873:3)
+    at requestWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17761:5)
+    at scheduleWork (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:17566:5)
+    at scheduleRootUpdate (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18240:3)
+    at updateContainerAtExpirationTime (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18267:10)
+    at updateContainer (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18324:10)
+    at ReactRoot.Object.&lt;anonymous&gt;.ReactRoot.render (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18586:3)
+    at D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18726:14
+    at unbatchedUpdates (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18124:10)
+    at legacyRenderSubtreeIntoContainer (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18722:5)
+    at Object.render (D:\Alla\github\doctor\node_modules\react-dom\cjs\react-dom.development.js:18783:12)
+    at Object.&lt;anonymous&gt; (D:\Alla\github\doctor\src\App.test.tsx:11:14)
+    at Object.asyncFn (D:\Alla\github\doctor\node_modules\jest-jasmine2\build\jasmine-async.js:68:30)
+    at resolve (D:\Alla\github\doctor\node_modules\jest-jasmine2\build\queueRunner.js:38:12)
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (D:\Alla\github\doctor\node_modules\jest-jasmine2\build\queueRunner.js:31:21)
+    at Promise.resolve.then.el (D:\Alla\github\doctor\node_modules\p-map\index.js:46:16)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</failure>
     </testcase>
   </testsuite>
 </testsuites>

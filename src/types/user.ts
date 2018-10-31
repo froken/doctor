@@ -1,5 +1,5 @@
 export class User {
-    public userName: string | null;
-    public email: string | null;
-    public password: string | null;
+    public userName: string | undefined;
+    public email: string | undefined;
+    public password: string | undefined;
 }
