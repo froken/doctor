@@ -46,8 +46,9 @@ namespace Doctor.Api
             }));
 
             services.AddDbContext<AuthorizationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
-           
+                options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database")));
+                //options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
+
             services.AddIdentity<ApplicationUser, IdentityRole>(o =>
             {
                 o.Password.RequireDigit = false;

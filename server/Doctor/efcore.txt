@@ -1,0 +1,2 @@
+dotnet ef migrations add AuthorizationInitial --startup-project ./Doctor.Api/ --project ./Doctor.Database/ --output-dir Migrations/Authorization
+dotnet ef database update --startup-project ./Doctor.Api/ --project ./Doctor.Database/

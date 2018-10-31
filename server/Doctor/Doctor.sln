@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctor.Api", "Doctor.Api\Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doctor.Database", "Doctor.Database\Doctor.Database.csproj", "{E06E95DE-B07A-4947-810B-A2B477F7A609}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doctor.Api.UnitTests", "Doctor.Api.UnitTests\Doctor.Api.UnitTests.csproj", "{379BA522-6BD6-48D6-8837-145CCD1925EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E06E95DE-B07A-4947-810B-A2B477F7A609}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E06E95DE-B07A-4947-810B-A2B477F7A609}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E06E95DE-B07A-4947-810B-A2B477F7A609}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379BA522-6BD6-48D6-8837-145CCD1925EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379BA522-6BD6-48D6-8837-145CCD1925EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379BA522-6BD6-48D6-8837-145CCD1925EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379BA522-6BD6-48D6-8837-145CCD1925EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
