@@ -17,9 +17,9 @@ export class RegisterForm extends React.Component<IDispatchProps, IState> {
 
         this.state = {
             user: {
-                email: null,
-                password: null,
-                userName: null
+                email: undefined,
+                password: undefined,
+                userName: undefined
             }
         }
 
@@ -47,13 +47,13 @@ export class RegisterForm extends React.Component<IDispatchProps, IState> {
                     <div className="form">
                         <form className="register-form">
                             <input type="text" placeholder="email address" name="email" 
-                                value={this.state.user.email != null ? this.state.user.email : ""} onChange={this.onChange}/>
+                                value={this.state.user.email} onChange={this.onChange}/>
 
                             <input type="text" placeholder="user name" name="userName" 
-                                value={this.state.user.userName != null ? this.state.user.userName : ""} onChange={this.onChange}/>
+                                value={this.state.user.userName} onChange={this.onChange}/>
 
                             <input type="password" placeholder="password" name="password" 
-                                value={this.state.user.password != null ? this.state.user.password : ""} onChange={this.onChange}/>
+                                value={this.state.user.password} onChange={this.onChange}/>
                             
                             <button onClick={this.onSubmit}>Register</button>
                             <p className="message">Already registered? <Link to="/login">Sign In</Link></p>

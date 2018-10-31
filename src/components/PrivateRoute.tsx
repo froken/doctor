@@ -9,10 +9,10 @@ export interface IProps {
 export class PrivateRoute extends React.Component<IProps, {}> {
 
     public render() {
-        const user = localStorage.getItem('user');
+        const userName = localStorage.getItem('userName');
         const location = (this.props as any).location as Location;
 
-        if (user) {
+        if (userName) {
             return <Route path={this.props.path} component={this.props.component}/>;
         }
 

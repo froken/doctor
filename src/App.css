@@ -95,3 +95,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;      
 }
+
+@keyframes onAutoFillStart {  from {/**/}  to {/**/}}
+@keyframes onAutoFillCancel {  from {/**/}  to {/**/}}
+input:-webkit-autofill {
+    animation-name: onAutoFillStart;
+    transition: background-color 50000s ease-in-out 0s;
+}
+input:not(:-webkit-autofill) {
+    animation-name: onAutoFillCancel;
+}
