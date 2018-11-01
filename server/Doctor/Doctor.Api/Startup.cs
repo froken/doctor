@@ -19,6 +19,16 @@ namespace Doctor.Api
 {
     public class Startup
     {
+        public static Action<DbContextOptionsBuilder, IConfiguration> AuthorizationDbContextBuilder = 
+            (DbContextOptionsBuilder options, IConfiguration configuration) => {
+                options.UseSqlite(
+                    configuration.GetConnectionString("authorization"),
+                    x => x.MigrationsAssembly("Doctor.Database"));
+                AuthorizationDbContextOptions = options.Options;
+        };
+
+        public static DbContextOptions AuthorizationDbContextOptions;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -57,6 +67,11 @@ namespace Doctor.Api
             })
             .AddEntityFrameworkStores<AuthorizationDbContext>();
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            });
+
             services.ConfigureApplicationCookie(options => {
                 options.Events = new CookieAuthenticationEvents
                 {
@@ -85,11 +100,14 @@ namespace Doctor.Api
 
         public virtual void UpdateAuthorizationContextOptions(DbContextOptionsBuilder options)
         {
-            options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database"));
+            AuthorizationDbContextBuilder(options, Configuration);
+          //  options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database"));
         }
 
         public virtual void ConfigureContext(IServiceCollection services)
         {
+            
+
             services.AddDbContext<AuthorizationDbContext>(options =>
                 UpdateAuthorizationContextOptions(options));
             //options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));

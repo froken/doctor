@@ -20,10 +20,17 @@ namespace Doctor.Api.Controllers
         }
 
         [HttpPost]
-        public async Task RegisterAsync([FromBody]CreateUserModel user)
+        public async Task<IActionResult> RegisterAsync([FromBody]CreateUserModel user)
         {
             var applicationUser = _mapper.Map<ApplicationUser>(user);
             var result = await _userManager.CreateAsync(applicationUser, user.Password);
+
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+
+            return BadRequest(result.Errors);
         }
     }
 }
