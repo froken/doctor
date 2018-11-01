@@ -36,6 +36,8 @@ namespace Doctor.Api
 
             services.AddMemoryCache();
 
+            ConfigureContext(services);
+
             services.AddCors(o => o.AddPolicy("ClientOriginPolicy", builder =>
             {
                 builder.WithOrigins("http://localhost", "http://localhost:3000")
@@ -44,10 +46,6 @@ namespace Doctor.Api
                        .AllowCredentials()
                        .AllowAnyHeader();
             }));
-
-            services.AddDbContext<AuthorizationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database")));
-                //options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(o =>
             {
@@ -83,6 +81,18 @@ namespace Doctor.Api
 #if DEBUG
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 #endif
+        }
+
+        public virtual void UpdateAuthorizationContextOptions(DbContextOptionsBuilder options)
+        {
+            options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database"));
+        }
+
+        public virtual void ConfigureContext(IServiceCollection services)
+        {
+            services.AddDbContext<AuthorizationDbContext>(options =>
+                UpdateAuthorizationContextOptions(options));
+            //options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
         }
 
         static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirectorWithStatusCode(HttpStatusCode statusCode) => context =>
