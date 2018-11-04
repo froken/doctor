@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Doctor.Api.UnitTests
 {
@@ -54,29 +55,7 @@ namespace Doctor.Api.UnitTests
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
         }
 
-        [TestMethod]
-        public async Task RegisterUser_UserIsSavedToDatabaseAsync()
-        {
-            // Arrange
-            var user = new CreateUserModel
-            {
-                UserName = Guid.NewGuid().ToString(),
-                Email = Guid.NewGuid() + "@test.com",
-                Password = "aaa111!!!AAA"
-            };
-
-            // Act
-            var content = new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json");
-            var response = await Client.PostAsync("/api/account", content);
-
-            // Assert
-            using (var context = new AuthorizationDbContext(Options))
-            {
-                var dbUser = await context.Users.FirstOrDefaultAsync(u => u.UserName == user.UserName);
-                Assert.IsNotNull(dbUser);
-                Assert.AreEqual(user.Email, dbUser.Email);
-            }
-        }
+      
 
         [TestMethod]
         public async Task Login_UserIsValid_ReturnOk()

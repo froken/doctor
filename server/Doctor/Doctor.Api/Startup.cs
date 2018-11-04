@@ -19,16 +19,6 @@ namespace Doctor.Api
 {
     public class Startup
     {
-        public static Action<DbContextOptionsBuilder, IConfiguration> AuthorizationDbContextBuilder = 
-            (DbContextOptionsBuilder options, IConfiguration configuration) => {
-                options.UseSqlite(
-                    configuration.GetConnectionString("authorization"),
-                    x => x.MigrationsAssembly("Doctor.Database"));
-                AuthorizationDbContextOptions = options.Options;
-        };
-
-        public static DbContextOptions AuthorizationDbContextOptions;
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -46,7 +36,7 @@ namespace Doctor.Api
 
             services.AddMemoryCache();
 
-            ConfigureContext(services);
+            ConfigureDbContext(services);
 
             services.AddCors(o => o.AddPolicy("ClientOriginPolicy", builder =>
             {
@@ -92,25 +82,13 @@ namespace Doctor.Api
             });
 
             services.AddMvc();
-
-#if DEBUG
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-#endif
         }
 
-        public virtual void UpdateAuthorizationContextOptions(DbContextOptionsBuilder options)
+        public virtual void ConfigureDbContext(IServiceCollection services)
         {
-            AuthorizationDbContextBuilder(options, Configuration);
-          //  options.UseSqlite(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Database"));
-        }
-
-        public virtual void ConfigureContext(IServiceCollection services)
-        {
-            
-
             services.AddDbContext<AuthorizationDbContext>(options =>
-                UpdateAuthorizationContextOptions(options));
-            //options.UseSqlServer(Configuration.GetConnectionString("authorization"), x => x.MigrationsAssembly("Doctor.Db")));
+                options.UseSqlite(Configuration.GetConnectionString("authorization"),
+                    x => x.MigrationsAssembly("Doctor.Database")));
         }
 
         static Func<RedirectContext<CookieAuthenticationOptions>, Task> ReplaceRedirectorWithStatusCode(HttpStatusCode statusCode) => context =>
@@ -130,7 +108,7 @@ namespace Doctor.Api
             }
 
             app.UseAuthentication();
-
+            app.UseHttpsRedirection();
             app.UseMvcWithDefaultRoute();
         }
     }

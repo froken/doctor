@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Doctor.Api.Controllers
 {
-    [Route("api/account")]
-    public class AccountController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AccountController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;

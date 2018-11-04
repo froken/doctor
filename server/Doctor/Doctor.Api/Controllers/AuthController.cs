@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace Doctor.Api.Controllers
 {
     [Route( "api/auth")]
-    public class AuthController : Controller
+    [ApiController]
+    public class AuthController : ControllerBase
     {
         private readonly SignInManager<ApplicationUser> _signInManager; 
 
