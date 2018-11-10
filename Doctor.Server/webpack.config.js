@@ -1,25 +1,25 @@
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    entry: { "main-client": './App/index.tsx' },
+    entry: { "main-client": "./App/index.tsx" },
     module: {
         rules: [{
             test: /\.tsx?$/,
             include: /App/,
-            use: 'babel-loader'
+            use: "babel-loader"
         }, {
                 test: /\.css?$/,
-                use: ['style-loader', 'css-loader']
+                use: ["style-loader", "css-loader"]
          }]
     },
     mode: "development",
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: [".tsx", ".ts", ".js"]
     },
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'wwwroot/js'),
-        publicPath: '/'
+        filename: "bundle.js",
+        path: path.resolve(__dirname, "wwwroot/js"),
+        publicPath: "/"
     },
     watch: true
 };
